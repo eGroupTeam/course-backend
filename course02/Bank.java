@@ -29,7 +29,7 @@ public class Bank {
 
     public void displayAllAccounts(){
         for (int i=0; i<count; i++){
-            System.out.println(allAccounts[i].getBalance());
+            System.out.println("Account " + i + ": " + allAccounts[i].getBalance());
         }
 
     }
