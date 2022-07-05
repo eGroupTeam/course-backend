@@ -2,10 +2,11 @@ public class Bank {
     private Account allAccounts[];
     private int count=0;//目前帳戶數
     private int maxAccount;//最多只能有這麼多帳戶
-    private static double interestRate = .006;
+    private double interestRate;
 
-    public Bank(int maxAccount){
+    public Bank(int maxAccount, double interestRate){
         this.maxAccount = maxAccount;
+        this.interestRate = interestRate;
         allAccounts = new Account[maxAccount];
     }
 
