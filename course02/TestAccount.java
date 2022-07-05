@@ -11,11 +11,11 @@ public class TestAccount {
         System.out.println(aAccount.getBalance());
         System.out.println(bAccount.getBalance());
         
-        Account.setInterestRate(.005);
+       /*  Account.setInterestRate(.005);
         aAccount.calculateInterest();
         bAccount.calculateInterest();
         System.out.println(aAccount.getBalance());
         System.out.println(bAccount.getBalance());
-         
+        */ 
       }
 }

@@ -2,7 +2,7 @@ public class Bank {
     private Account allAccounts[];
     private int count=0;//目前帳戶數
     private int maxAccount;//最多只能有這麼多帳戶
-    private static double interestRate = .006;
+    private static double interestRate = .008;
 
     public Bank(int maxAccount){
         this.maxAccount = maxAccount;
