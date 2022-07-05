@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.egroup.course.demospringpj;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class DemoApplication {
+public class DemoSpringpjApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(DemoSpringpjApplication.class, args);
 	}
+
 	@GetMapping("/hello")
-		public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Welcome to Ben's App! Hello %s!", name);
+	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+		return String.format("Hello %s!", name);
 	}
 
 }
