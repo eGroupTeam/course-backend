@@ -1,3 +1,4 @@
+/* 
 public class TestTrip {
   private int max = 10;
 	
@@ -39,3 +40,4 @@ public class TestTrip {
     
   }
 }
+*/
