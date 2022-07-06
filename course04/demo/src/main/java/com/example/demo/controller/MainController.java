@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.entity.Customer;
+
   @Controller
   public class MainController{
     @GetMapping({"/","/hello"})
@@ -25,8 +26,11 @@ import com.example.demo.entity.Customer;
     }
     @PostMapping("/request")
     @ResponseBody
-    public String postRequest(@ModelAttribute Customer customer) {
+    public String[] nameRequest(@ModelAttribute Customer customer) {
       //System.out.println("post");
-      return customer.getName();
+      String list[] = new String[2];
+      list[0] = customer.getName();
+      list[1] = customer.getAge();
+      return list;
     }
 }
