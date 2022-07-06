@@ -1,12 +1,15 @@
-public abstract class Trip {
+public abstract class Trip implements Rental {
 	private String name;
 	private int days;
 	private int miles;
+    private String needGPS;
 
-    public Trip(String someName, int someDays, int someMiles) {
+    public Trip(String someName, int someDays, int someMiles, String someGPS) {
     	name = someName;
     	days = someDays;
-    	miles = someMiles;
+    	miles = someMiles; 
+        needGPS = someGPS;
+
     }
     
     public String getName(){
@@ -20,12 +23,15 @@ public abstract class Trip {
     public int getMiles(){
     	return miles;
     }
+
+    public String ynGPS(){
+        return needGPS;
+    }
     
     public String toString(){
-    	return name + ": " + days + " days, " + miles + " miles," + getCharge();
+    	return name + ": " + days + " days, " + miles + " miles, " + needGPS + ", $" + getCharge();
     }
  
     public abstract double getCharge();
-    
     
 }

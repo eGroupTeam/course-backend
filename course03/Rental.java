@@ -1,4 +1,3 @@
-
 public interface Rental {
- public abstract double getCharge();
+    public abstract double getCharge();
 }
