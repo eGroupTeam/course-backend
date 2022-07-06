@@ -1,8 +1,8 @@
 
 public class HolidayTrip extends Trip{
     public static final int FIX_CHARGE = 500;
-    public HolidayTrip(String someName, int someDays, int someMiles) {
-    	super(someName, someDays, someMiles);
+    public HolidayTrip(String someName, int someDays, int someMiles, boolean opt) {
+    	super(someName, someDays, someMiles, opt);
     }
 
     private double getDaysMilesCharge() {
@@ -12,10 +12,20 @@ public class HolidayTrip extends Trip{
 
     
     public double getCharge(){
-    	if( getDaysMilesCharge()> FIX_CHARGE)
-    		return FIX_CHARGE;
+        if(super.getOption() == true){
+            if( getDaysMilesCharge()> FIX_CHARGE)
+    		return FIX_CHARGE + getGPS() ;
     	else
-    		return getDaysMilesCharge();    		
+    		return getDaysMilesCharge() + getGPS();
+
+        }
+        else{
+            if( getDaysMilesCharge()> FIX_CHARGE)
+    		return FIX_CHARGE ;
+    	else
+    		return getDaysMilesCharge(); 
+        }
+    	   		
     }
      
     
