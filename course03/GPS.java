@@ -3,5 +3,4 @@ public class GPS implements Rental{
     public String toString(){
     	return "GPS charge:"+getCharge();
     }    
-
 }
