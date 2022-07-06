@@ -1,16 +1,16 @@
-public class TestTrip {
-  /*private int max = 10;
-	
+public class TestRental {
+    private int max = 10;
+
 	private Trip allTrips[] = new Trip[max];
 	private int numOfTrips;
 
-	public TestTrip(){
+	public TestRental(){
 		// adding some testing data
-		allTrips[0] = new RegularTrip("Ben Wu", 3, 100);
-		allTrips[1] = new HolidayTrip("Debby Wu", 4, 200);
-		allTrips[2] = new HolidayTrip("Steven Lin", 1, 100);
-		allTrips[3] = new HolidayTrip("George Hsu", 1, 300);
-		allTrips[4] = new RegularTrip("David Hsu", 3, 300);
+		allTrips[0] = new RegularTrip("Ben Wu", 3, 100 , true);
+		allTrips[1] = new HolidayTrip("Debby Wu", 4, 200, false);
+		allTrips[2] = new HolidayTrip("Steven Lin", 1, 100, false);
+		allTrips[3] = new HolidayTrip("George Hsu", 1, 300, true);
+		allTrips[4] = new RegularTrip("David Hsu", 3, 300, true);
 		numOfTrips = 5;
 	}
   public double getTotalTripCharges() {
@@ -34,8 +34,10 @@ public class TestTrip {
   }
 
   public static void main(String args[]) {
-    TestTrip myApp = new TestTrip();
+    TestRental myApp = new TestRental();
     myApp.run();
-    
-  }*/
+
+  }
+
 }
+

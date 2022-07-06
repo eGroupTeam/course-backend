@@ -1,7 +1,7 @@
 
 public class HolidayTrip extends Trip{
     public static final int FIX_CHARGE = 500;
-    public HolidayTrip(String someName, int someDays, int someMiles) {
+    public HolidayTrip(String someName, int someDays, int someMiles, boolean b) {
     	super(someName, someDays, someMiles);
     }
 

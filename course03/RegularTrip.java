@@ -1,7 +1,7 @@
 
 public class RegularTrip extends Trip{
 
-    public RegularTrip(String someName, int someDays, int someMiles) {
+    public RegularTrip(String someName, int someDays, int someMiles, boolean b) {
     	super(someName, someDays, someMiles);
     }
     
