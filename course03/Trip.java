@@ -1,4 +1,4 @@
-public abstract class Trip {
+public abstract class Trip implements Rental{
 	private String name;
 	private int days;
 	private int miles;
