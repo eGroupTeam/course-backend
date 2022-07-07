@@ -25,8 +25,10 @@ import com.example.demo.entity.Customer;
     }
     @PostMapping("/request")
     @ResponseBody
-    public String postRequest(@ModelAttribute Customer customer) {
-      //System.out.println("post");
-      return customer.getName();
+    public String[] postRequest(@ModelAttribute Customer customer) {
+      String name = customer.getName();
+      int age = customer.getAge();
+      String ageStr = String.valueOf(age);
+      return new String[]{name, ageStr};
     }
 }
