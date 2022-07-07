@@ -27,6 +27,6 @@ import com.example.demo.entity.Customer;
     @ResponseBody
     public String postRequest(@ModelAttribute Customer customer) {
       //System.out.println("post");
-      return customer.getName();
+      return customer.getName()+"("+customer.getAge()+")";
     }
 }
