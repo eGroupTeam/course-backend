@@ -5,13 +5,13 @@ public class Customer {
   private String address;
   private int weight;
 
+
   public Customer(Long id, String name, String address, int weight) {
     this.id = id;
     this.name = name;
     this.address = address;
     this.weight = weight;
   }
-
 
   public Long getId() {
     return this.id;
@@ -44,6 +44,7 @@ public class Customer {
   public void setWeight(int weight) {
     this.weight = weight;
   }
+  
    
   
 }

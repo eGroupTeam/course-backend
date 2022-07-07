@@ -1,26 +1,48 @@
 package com.example.demo.entity;
-public class Employee{
-    private String name;
-    private String department;
+public class Employee {
+  private Long id;
+  private String name;
+  private String address;
+  private int weight;
 
-    public Employee(String name, String department ) {
-      this.name = name;
-      this.department = department;
-    }
 
-    public String getName() {
-      return name;
-    }
+  public Employee(Long id, String name, String address, int weight) {
+    this.id = id;
+    this.name = name;
+    this.address = address;
+    this.weight = weight;
+  }
 
-    public void setName(String name) {
-      this.name = name;
-    }
+  public Long getId() {
+    return this.id;
+  }
 
-    public String getDepartment() {
-      return department;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setDepartment(String department) {
-      this.department = department;
-    }
+  public String getName() {
+    return this.name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getAddress() {
+    return this.address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public int getWeight() {
+    return this.weight;
+  }
+
+  public void setWeight(int weight) {
+    this.weight = weight;
+  }
+
 }

@@ -5,6 +5,5 @@ import com.example.demo.entity.Customer;
 @Repository
 public interface CustomerDAO {
   public List<Customer> findAll();
-
   public Customer findOne(Long id);
 }
