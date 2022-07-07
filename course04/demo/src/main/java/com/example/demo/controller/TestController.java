@@ -21,8 +21,8 @@ public class TestController{
 
     @GetMapping("/test/request")
     @ResponseBody
-    public String request(@ModelAttribute("id") String name){
+    public String request(@ModelAttribute("id") String name, @ModelAttribute("id") int age){
        
-       return name;
+       return name+"("+age+")";
     }
 }
