@@ -17,7 +17,7 @@ public class EmployeeController {
   @GetMapping(value = "/employee")
   public List<Employee> retrieveEmployees() throws SQLException{
       return dao.findAll();
-  }
+  }//使用自己資料庫內的資料
 
   @GetMapping(value = {"/employee/{id}"})
   public Employee retrieveOneCustomer(@PathVariable("id") Long id) throws SQLException{
