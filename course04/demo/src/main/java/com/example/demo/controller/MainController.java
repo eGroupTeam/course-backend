@@ -29,4 +29,8 @@ import com.example.demo.entity.Customer;
       //System.out.println("post");
       return customer.getName();
     }
+    public Number postRequest2(@ModelAttribute Customer customer) {
+      //System.out.println("post");
+      return customer.getage();
+    }
 }
