@@ -213,4 +213,6 @@ http://localhost:8080/customer/2
 
 {"id":2, "name":"Ben","address": "Taipei","weight":50}
 
+如何處理錯誤? 試試看上面的程式，會產生錯誤嗎? 會有哪些錯誤? 如何處理? 請參考前一週的處理方式。
+
 ### 作業:試著新增一個employee資料表，並且修改讓上週的RestController可以從資料表讀取資料
