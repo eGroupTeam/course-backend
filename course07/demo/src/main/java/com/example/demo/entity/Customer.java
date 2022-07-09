@@ -1,23 +1,22 @@
 package com.example.demo.entity;
+
+import java.util.Objects;
+
 public class Customer {
   private Long id;
   private String name;
   private String address;
   private int weight;
 
-  public Customer(Long id, String name, String address, int weight) throws Exception {
+  public Customer() {
+  }
+
+  public Customer(Long id, String name, String address, int weight) {
     this.id = id;
     this.name = name;
     this.address = address;
-    if (weight > 0){
-      this.weight = weight;
-    }
-    else {
-      throw new Exception("體重必須大於0");
-    }
-
+    this.weight = weight;
   }
-
 
   public Long getId() {
     return this.id;
@@ -50,7 +49,52 @@ public class Customer {
   public void setWeight(int weight) {
     this.weight = weight;
   }
-   
-  
-}
 
+  public Customer id(Long id) {
+    setId(id);
+    return this;
+  }
+
+  public Customer name(String name) {
+    setName(name);
+    return this;
+  }
+
+  public Customer address(String address) {
+    setAddress(address);
+    return this;
+  }
+
+  public Customer weight(int weight) {
+    setWeight(weight);
+    return this;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this)
+      return true;
+    if (!(o instanceof Customer)) {
+      return false;
+    }
+    Customer customer = (Customer) o;
+    return Objects.equals(id, customer.id) && Objects.equals(name, customer.name)
+        && Objects.equals(address, customer.address) && weight == customer.weight;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, address, weight);
+  }
+
+  @Override
+  public String toString() {
+    return "{" +
+        " id='" + getId() + "'" +
+        ", name='" + getName() + "'" +
+        ", address='" + getAddress() + "'" +
+        ", weight='" + getWeight() + "'" +
+        "}";
+  }
+
+}

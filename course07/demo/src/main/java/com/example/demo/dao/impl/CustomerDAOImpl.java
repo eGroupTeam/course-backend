@@ -95,6 +95,25 @@ public class CustomerDAOImpl implements CustomerDAO {
       //something wrong
       System.out.println(e);
     }
+
+
     return result;
   }
+
+  public int deleteCustomer(Long id){
+    int result = 0;
+        try {
+            Connection conn = dataSource.getConnection();
+            String sql = "DELETE FROM customer WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, id);
+            result = stmt.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            // something wrong
+            System.out.println(e);
+        }
+        return result;
+  }
+  
 }

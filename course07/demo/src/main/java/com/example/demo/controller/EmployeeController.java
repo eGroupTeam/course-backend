@@ -19,9 +19,9 @@ public class EmployeeController {
   private ArrayList<Employee> employeeList = new ArrayList<>();
 
   public EmployeeController(){
-    employeeList.add(new Employee("Mary", "IT"));
-    employeeList.add(new Employee("Ruby", "IT"));
-    employeeList.add(new Employee("Ben", "IT"));
+    employeeList.add(new Employee(0,"Mary", "IT"));
+    employeeList.add(new Employee(1,"Ruby", "IT"));
+    employeeList.add(new Employee(2,"Ben", "IT"));
   }
    
 
@@ -44,7 +44,7 @@ public class EmployeeController {
 
   @GetMapping("/employee/{id}")
   public Employee retrieveOneEmployee(@PathVariable("id") int id){
-    Employee employee= new Employee("", "");
+    Employee employee= new Employee(-1, "", "");
     try{
       employee =  employeeList.get(id);
     }
