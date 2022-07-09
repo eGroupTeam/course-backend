@@ -8,4 +8,5 @@ public interface CustomerDAO {
   public Customer findOne(Long id) throws Exception;
   public int createCustomer(Customer customer);
   public int updateCustomer(Customer customer);
+  public int deleteCustomer(Long id);
 }
