@@ -19,7 +19,8 @@ public class CustomerDAOImpl implements CustomerDAO {
   //jdbc
   
   public Customer findOne(Long id){
-    Customer customer = new Customer(-1l,"","",0);
+    Customer customer = new Customer(-1l, "","",0);
+
     try {
       Connection conn = dataSource.getConnection();
       String sql = "select id, name, address, weight from customer where id = ?";
