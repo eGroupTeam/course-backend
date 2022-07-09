@@ -1,65 +1,64 @@
-package com.example.demo.dao.impl;
-import java.util.ArrayList;
-import java.util.List;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+// package com.example.demo.dao.impl;
+// import java.util.ArrayList;
+// import java.util.List;
+// import java.sql.Connection;
+// import java.sql.PreparedStatement;
+// import java.sql.ResultSet;
+// import java.sql.SQLException;
+// import javax.sql.DataSource;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Repository;
 
-import com.example.demo.dao.CustomerDAO;
-import com.example.demo.entity.Customer;
+// import com.example.demo.dao.EmployeeDAO;
+// import com.example.demo.entity.Employee;
 
-@Repository
-public class CustomerDAOImpl implements CustomerDAO {
-  @Autowired
-  private DataSource dataSource;
-  //jdbc
+// @Repository
+// public class EmployeeDAOImpl implements EmployeeDAO {
+//   @Autowired
+//   private DataSource dataSource;
+//   //jdbc
   
-  public Customer findOne(Long id){
-    Customer customer = new Customer(-1l,"","",0);
-    try {
-      Connection conn = dataSource.getConnection();
-      String sql = "select id, name, address, weight from customer where id = ?";
-      PreparedStatement stmt = conn.prepareStatement(sql);
-      stmt.setLong(1, id);
-      ResultSet rs = stmt.executeQuery();
-      if (rs.next()){
-        customer=getCustomer(rs);
-      }
+//   public Employee findOne(Long id){
+//     Employee employee = new Employee(-1l,"","");
+//     try {
+//       Connection conn = dataSource.getConnection();
+//       String sql = "select id, name, department from employee where id = ?";
+//       PreparedStatement stmt = conn.prepareStatement(sql);
+//       stmt.setLong(1, id);
+//       ResultSet rs = stmt.executeQuery();
+//       if (rs.next()){
+//         employee=getEmployee(rs);
+//       }
 
-      conn.close();
-    } catch(Exception e) {
-      //something wrong
-      System.out.println(e);
-    }
-    return customer;
-  }
-  public List<Customer> findAll() {
-    List<Customer> customers = new ArrayList<Customer>();
-    try {
-      Connection conn = dataSource.getConnection();
-      String sql = "select id, name, address, weight from customer";
-      PreparedStatement stmt = conn.prepareStatement(sql);
-      ResultSet rs = stmt.executeQuery();
-      while (rs.next()){
-        customers.add(getCustomer(rs));
-      }
-      conn.close();
-    } catch(Exception e) {
-      //something wrong
-      System.out.println(e);
-    }
-    return customers;
-  }
+//       conn.close();
+//     } catch(Exception e) {
+//       //something wrong
+//       System.out.println(e);
+//     }
+//     return employee;
+//   }
+//   public List<Employee> findAll() {
+//     List<Employee> employees = new ArrayList<Employee>();
+//     try {
+//       Connection conn = dataSource.getConnection();
+//       String sql = "select id, name, department from employee";
+//       PreparedStatement stmt = conn.prepareStatement(sql);
+//       ResultSet rs = stmt.executeQuery();
+//       while (rs.next()){
+//         employees.add(getEmployee(rs));
+//       }
+//       conn.close();
+//     } catch(Exception e) {
+//       //something wrong
+//       System.out.println(e);
+//     }
+//     return employees;
+//   }
 
-  public Customer getCustomer(ResultSet rs) throws SQLException{
-    return new Customer(
-      rs.getLong("id"),
-      rs.getString("name"),
-      rs.getString("address"),
-      rs.getInt("weight"));
-  }
-}
+//   public Employee getEmployee(ResultSet rs) throws SQLException{
+//     return new Employee(
+//       rs.getLong("id"),
+//       rs.getString("name"),
+//       rs.getString("department"));
+//   }
+// }
