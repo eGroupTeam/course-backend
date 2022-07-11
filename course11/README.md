@@ -152,3 +152,5 @@
     };
 
 ### 作業:完成所有 REST service 的對應測試，修完 bug....
+
+請將 postman 的測試腳本，Export Json，放到目錄 Push 到 github
