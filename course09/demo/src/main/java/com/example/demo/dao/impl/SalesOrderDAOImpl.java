@@ -18,6 +18,7 @@ import com.example.demo.dao.SalesOrderDAO;
 import com.example.demo.entity.ProductSales;
 import com.example.demo.entity.SalesOrder;
 import com.example.demo.entity.SalesOrderItem;
+import com.example.demo.entity.TakeTimeRange;
 
 @Repository
 public class SalesOrderDAOImpl implements SalesOrderDAO {
@@ -41,6 +42,28 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
 
     }
     return customers;
+  }
+
+  public List<TakeTimeRange> getTimeRangeList(String time1, String time2) throws Exception {
+    List<TakeTimeRange> time = new ArrayList<TakeTimeRange>();
+    String sql = "select product_id, name, SUM(amount), order_time as TimeRangeOrder from (sales_order_item join product on product.id = sales_order_item.product_id )join sales_order on sales_order_item.order_id = sales_order.id where order_time between ? and ? group by product_id;";
+    try (
+        Connection conn = dataSource.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);) {
+          stmt.setString(1,time1);
+          stmt.setString(2,time2);
+      ResultSet result = stmt.executeQuery();
+      while (result.next()) {
+            time.add(
+              new TakeTimeRange(
+                result.getLong("product_id"),
+                result.getString("name"),
+                result.getInt("SUM(amount)"),
+                result.getString("TimeRangeOrder")));
+      }
+
+    }
+    return time;
   }
 
   public int insert(SalesOrder order) throws Exception {
