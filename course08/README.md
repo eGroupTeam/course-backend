@@ -1,7 +1,7 @@
 # course-backend
 ## 第八章 資料庫應用 1 基礎SQL
 
-* [SQL語法教學](https://www.1keydata.com/tw/sql/sqljoins.html)
+* [SQL語法教學](https://www.1keydata.com/tw/sql/sql.html)
 
 Java 7之後支援try with resources語法，在try()裡放進必須close的資源，在使用後會close，萬一有問題，也會自動close。我們接下來全部會改用這樣的語法。
 
