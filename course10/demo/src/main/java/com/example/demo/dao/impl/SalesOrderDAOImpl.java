@@ -59,12 +59,35 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
               new SalesOrder(
                   orderId,
                   result.getInt("customer_id"),
+                  result.getInt("status"),
                   getItemList(orderId)));
 
         }
 
       }
 
+    }
+    return salesOrder;
+  }
+
+  public List<SalesOrder> getOrderListStatus(int status) throws Exception{
+    List<SalesOrder> salesOrder = new ArrayList<SalesOrder>();
+    String sql = "select * from sales_order where status = ?";
+    try (
+        Connection conn = dataSource.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);) {
+      stmt.setInt(1, status);
+      try (ResultSet result = stmt.executeQuery();) {
+        while (result.next()) {
+          int orderId = result.getInt("id");
+          salesOrder.add(
+              new SalesOrder(
+                  orderId,
+                  result.getInt("customer_id"),
+                  result.getInt("status"),
+                  getItemList(orderId)));
+        }
+      }
     }
     return salesOrder;
   }
@@ -78,16 +101,12 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
         ResultSet result = stmt.executeQuery();) {
       while (result.next()) {
 
-        // salesOrder.add(
-        // new SalesOrder(
-        // result.getInt("id"),
-        // result.getInt("customer_id")));
-
         int orderId = result.getInt("id");
         salesOrder.add(
             new SalesOrder(
                 orderId,
                 result.getInt("customer_id"),
+                result.getInt("status"),
                 getItemList(orderId)));
 
       }
@@ -108,6 +127,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
           return new SalesOrder(
               orderId,
               result.getInt("customer_id"),
+              result.getInt("status"),
               getItemList(orderId));
 
         } else {
