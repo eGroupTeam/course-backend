@@ -59,6 +59,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
               new SalesOrder(
                   orderId,
                   result.getInt("customer_id"),
+                  result.getInt("status"),
                   getItemList(orderId)));
 
         }
@@ -88,6 +89,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
             new SalesOrder(
                 orderId,
                 result.getInt("customer_id"),
+                result.getInt("status"),
                 getItemList(orderId)));
 
       }
@@ -108,6 +110,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
           return new SalesOrder(
               orderId,
               result.getInt("customer_id"),
+              result.getInt("status"),
               getItemList(orderId));
 
         } else {
@@ -118,6 +121,34 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
       }
 
     }
+
+  }
+
+  public List<SalesOrder> getStatusOrder(int status) throws Exception {
+    List<SalesOrder> StatusOrderItem = new ArrayList<SalesOrder>();
+    String sql = "select * from sales_order where status = ?";
+    try (
+        Connection conn = dataSource.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);) {
+      stmt.setInt(1, status);
+      try (ResultSet result = stmt.executeQuery();) {
+        if (result.next()) {
+          int orderId = result.getInt("id");
+          StatusOrderItem.add(new SalesOrder(
+              orderId,
+              result.getInt("customer_id"),
+              result.getInt("status"),
+              getItemList(orderId)));
+
+        } else {
+          throw new ResponseStatusException(
+              HttpStatus.NOT_FOUND, "狀態:" + status + "無資料");
+        }
+
+      }
+
+    }
+    return StatusOrderItem;
 
   }
 
