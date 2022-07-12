@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.dao.SalesOrderDAO;
 import com.example.demo.entity.ProductSales;
+import com.example.demo.entity.ProductTime;
 import com.example.demo.entity.SalesOrder;
 import com.example.demo.entity.SalesOrderItem;
 
@@ -109,5 +110,26 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
     }
     return price;
   }
+
+  public List<ProductTime> getSalesBetweenList(String time1, String time2) throws Exception{
+    List<ProductTime> product = new ArrayList<ProductTime>();
+    String sql = "select product_id, name, SUM(amount) as TotalSales, order_time from (sales_order_item join product on product.id = sales_order_item.product_id )join sales_order on sales_order_item.order_id = sales_order.id where order_time between ? and ? group by product_id;";
+    try(
+      Connection conn = dataSource.getConnection();
+      PreparedStatement stmt = conn.prepareStatement(sql);) {
+      stmt.setString(1,time1);
+      stmt.setString(2,time2);
+      try(ResultSet rs = stmt.executeQuery();){
+        while (rs.next()){
+          product.add(new ProductTime(rs.getLong("product_id"),rs.getString("name"), rs.getInt("TotalSales"), rs.getString("order_time")));
+        }  
+      }
+      catch(Exception e) {throw e;}  
+    } catch(Exception e) {
+      throw e;
+    }
+    return product;
+  }
+
 
 }
