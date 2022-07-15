@@ -18,4 +18,6 @@ public interface SalesOrderDAO {
   public List<SalesOrder> getCutomerOrderList(int customerId) throws Exception;
 
   public SalesOrder getOrder(int orderId) throws Exception;
+
+  public List<SalesOrder> getListOfStatus(int status) throws Exception;
 }

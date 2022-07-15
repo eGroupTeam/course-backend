@@ -3,6 +3,7 @@ package com.example.demo.dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -12,7 +13,10 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -25,6 +29,9 @@ import com.example.demo.entity.SalesOrderItem;
 public class SalesOrderDAOImpl implements SalesOrderDAO {
   @Autowired
   private DataSource dataSource;
+
+  @Autowired
+  private JdbcTemplate jdbcTemplate;
 
   public List<ProductSales> getProductSalesList() throws Exception {
     List<ProductSales> productSales = new ArrayList<ProductSales>();
@@ -59,7 +66,8 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
               new SalesOrder(
                   orderId,
                   result.getInt("customer_id"),
-                  getItemList(orderId)));
+                  getItemList(orderId),
+                  result.getInt("status")));
 
         }
 
@@ -78,18 +86,13 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
         ResultSet result = stmt.executeQuery();) {
       while (result.next()) {
 
-        // salesOrder.add(
-        // new SalesOrder(
-        // result.getInt("id"),
-        // result.getInt("customer_id")));
-
         int orderId = result.getInt("id");
-        salesOrder.add(
-            new SalesOrder(
-                orderId,
-                result.getInt("customer_id"),
-                getItemList(orderId)));
-
+        salesOrder.add( new SalesOrder(
+          orderId,
+          result.getInt("customer_id"),
+          getItemList(orderId),
+          result.getInt("status"))
+        );
       }
 
     }
@@ -108,7 +111,8 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
           return new SalesOrder(
               orderId,
               result.getInt("customer_id"),
-              getItemList(orderId));
+              getItemList(orderId),
+              result.getInt("status"));
 
         } else {
           throw new ResponseStatusException(
@@ -212,4 +216,20 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
     return price;
   }
 
+  public List<SalesOrder> getListOfStatus(int status){
+    List<SalesOrder> lst=jdbcTemplate.query(
+      "select * from sales_order where `status`="+String.valueOf(status),
+      new ResultSetExtractor<List<SalesOrder>>(){
+        @Override
+        public List<SalesOrder> extractData(ResultSet rs) throws SQLException, DataAccessException {
+          List<SalesOrder> lst = new ArrayList<SalesOrder>();
+          while (rs.next()){
+            lst.add(new SalesOrder(rs.getInt("id"),rs.getInt("customer_id"),rs.getInt("status")));
+          }
+          return lst;
+        }
+      }
+    );
+    return lst;
+  }
 }

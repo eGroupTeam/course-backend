@@ -6,17 +6,20 @@ public class SalesOrder {
   private int id;
   private int customerId;
   private List<SalesOrderItem> items;
+  private int status;
 
-  public SalesOrder(int id, int customerId, List<SalesOrderItem> items) {
+  public SalesOrder(int id, int customerId, List<SalesOrderItem> items, int status) {
     this.id = id;
     this.customerId = customerId;
     this.items = items;
+    this.status = status;
   }
 
   // 假如不需要SalesOrderItem
-  public SalesOrder(int id, int customerId) {
+  public SalesOrder(int id, int customerId, int status) {
     this.id = id;
     this.customerId = customerId;
+    this.status = status;
   }
 
   public List<SalesOrderItem> getItems() {
@@ -41,6 +44,14 @@ public class SalesOrder {
 
   public void setCustomerId(int customerId) {
     this.customerId = customerId;
+  }
+
+  public int getStatus() {
+    return this.status;
+  }
+
+  public void setStatus(int status) {
+    this.status = status;
   }
 
 }
