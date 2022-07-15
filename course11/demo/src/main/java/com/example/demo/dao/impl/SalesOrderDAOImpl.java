@@ -54,7 +54,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
       stmt.setInt(1, customerId);
       try (ResultSet result = stmt.executeQuery();) {
         while (result.next()) {
-          int orderId = result.getInt("id");
+          int orderId = result.getInt("order_id");
           SalesOrder order = new SalesOrder(
               orderId,
               result.getInt("customer_id"));
@@ -82,7 +82,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
         // result.getInt("id"),
         // result.getInt("customer_id")));
 
-        int orderId = result.getInt("id");
+        int orderId = result.getInt("order_id");
         System.out.println("orderId" + orderId);
         SalesOrder order = new SalesOrder(
             orderId,
@@ -97,7 +97,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
   }
 
   public SalesOrder getOrder(int orderId) throws Exception {
-    String sql = "select * from sales_order where id = ?";
+    String sql = "select * from sales_order where order_id = ?";
     try (
         Connection conn = dataSource.getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql);) {

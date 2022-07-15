@@ -12,7 +12,7 @@ public interface CustomerDAO {
   public List<Customer> getWeightBetweenList(int lowBound, int upperBound) throws Exception;
   public List<String> getDistinctAddressList() throws Exception;
   public List<AddressCount> getGroupByAddressList() throws Exception;
-  public List<String> getGroupByAddressHavingList() throws Exception;
+  public List<String> getGroupByAddressHavingList(int count) throws Exception;
   public Customer get(Long id) throws Exception;
   public int insert(Customer customer) throws Exception;
   public int update(Customer customer) throws Exception;

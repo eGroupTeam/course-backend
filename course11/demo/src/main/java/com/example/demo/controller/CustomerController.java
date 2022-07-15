@@ -83,9 +83,9 @@ public class CustomerController {
     return customers;
   }
 
-  @GetMapping(value = {"/customer/address/having"})
-  public List<String> retrieveCustomerAddressHaving() throws SQLException, Exception{
-    List<String> customers = dao.getGroupByAddressHavingList();
+  @GetMapping(value = {"/customer/address/having/{count}"})
+  public List<String> retrieveCustomerAddressHaving(@PathVariable("count") int count) throws SQLException, Exception{
+    List<String> customers = dao.getGroupByAddressHavingList(count);
     if (customers.size() == 0){
       throw new ResponseStatusException(
         HttpStatus.NOT_FOUND, "無資料");

@@ -164,9 +164,9 @@ public class CustomerDAOImpl implements CustomerDAO {
     return customers;
   }
 
-  public List<String> getGroupByAddressHavingList() throws Exception{
+  public List<String> getGroupByAddressHavingList(int count) throws Exception{
     List<String> customers = new ArrayList<String>();
-    String sql = "select address from customer group by address having COUNT(address)>2";
+    String sql = "select address from customer group by address having COUNT(address)>"+count;
     try(
       Connection conn = dataSource.getConnection();
       PreparedStatement stmt = conn.prepareStatement(sql);) {
