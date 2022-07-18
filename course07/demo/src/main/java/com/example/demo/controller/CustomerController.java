@@ -49,4 +49,8 @@ public class CustomerController {
       throw new SQLException("id: "+id+" 並不存在");
     }
   }
+  @DeleteMapping(value = "/customer/{id}")
+  public void processFormDelete(@PathVariable("id") int id) throws SQLException {
+    dao.deleteCustomer(id);
+  }
 }

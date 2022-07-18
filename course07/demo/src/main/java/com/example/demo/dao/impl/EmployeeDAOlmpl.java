@@ -9,25 +9,25 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.dao.CustomerDAO;
-import com.example.demo.entity.Customer;
+import com.example.demo.dao.EmployeeDAO;
+import com.example.demo.entity.Employee;
 
 @Repository
-public class CustomerDAOImpl implements CustomerDAO {
+public class EmployeeDAOlmpl implements EmployeeDAO {
   @Autowired
   private DataSource dataSource;
   //jdbc
-  
-  public Customer findOne(Long id) throws Exception{
-    Customer customer = new Customer(-1l,"","",1);
+
+  public Employee findOne(Long id) throws Exception{
+    Employee employee = new Employee(-1l,"","");
     try {
       Connection conn = dataSource.getConnection();
-      String sql = "select id, name, address, weight from customer where id = ?";
+      String sql = "select id, name, department from employees where id = ?";
       PreparedStatement stmt = conn.prepareStatement(sql);
       stmt.setLong(1, id);
       ResultSet rs = stmt.executeQuery();
       if (rs.next()){
-        customer=getCustomer(rs);
+        employee=getEmployee(rs);
       }
 
       conn.close();
@@ -35,42 +35,40 @@ public class CustomerDAOImpl implements CustomerDAO {
       //something wrong
       System.out.println(e);
     }
-    return customer;
+    return employee;
   }
-  public List<Customer> findAll() {
-    List<Customer> customers = new ArrayList<Customer>();
+  public List<Employee> findAll() {
+    List<Employee> employees = new ArrayList<Employee>();
     try {
       Connection conn = dataSource.getConnection();
-      String sql = "select id, name, address, weight from customer";
+      String sql = "select id, name, department from employees";
       PreparedStatement stmt = conn.prepareStatement(sql);
       ResultSet rs = stmt.executeQuery();
       while (rs.next()){
-        customers.add(getCustomer(rs));
+        employees.add(getEmployee(rs));
       }
       conn.close();
     } catch(Exception e) {
       //something wrong
       System.out.println(e);
     }
-    return customers;
+    return employees;
   }
 
-  public Customer getCustomer(ResultSet rs) throws SQLException, Exception{
-    return new Customer(
+  public Employee getEmployee(ResultSet rs) throws SQLException, Exception{
+    return new Employee(
       rs.getLong("id"),
       rs.getString("name"),
-      rs.getString("address"),
-      rs.getInt("weight"));
+      rs.getString("department"));
   }
-  public int createCustomer(Customer customer){
+  public int createEmployee(Employee employee){
     int result = 0;
     try {
       Connection conn = dataSource.getConnection();
-      String sql = "insert into customer (name, address, weight) values(?, ?, ?)";
+      String sql = "insert into employees (name, department) values(?, ?)";
       PreparedStatement stmt = conn.prepareStatement(sql);
-      stmt.setString(1, customer.getName());
-      stmt.setString(2, customer.getAddress());
-      stmt.setInt(3, customer.getWeight());
+      stmt.setString(1, employee.getName());
+      stmt.setString(2, employee.getDepartment());
       result = stmt.executeUpdate();
       conn.close();
     } catch(Exception e) {
@@ -79,16 +77,15 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
     return result;
   }
-  public int updateCustomer(Customer customer){
+  public int updateEmployee(Employee employee){
     int result = 0;
     try {
       Connection conn = dataSource.getConnection();
-      String sql = "update customer set name=?, address=?, weight=? where id =?";
+      String sql = "update employees set name=?, department=? where id =?";
       PreparedStatement stmt = conn.prepareStatement(sql);
-      stmt.setString(1, customer.getName());
-      stmt.setString(2, customer.getAddress());
-      stmt.setInt(3, customer.getWeight());
-      stmt.setLong(4, customer.getId());
+      stmt.setString(1, employee.getName());
+      stmt.setString(2, employee.getDepartment());
+      stmt.setLong(3, employee.getId());
       result = stmt.executeUpdate();
       conn.close();
     } catch(Exception e) {
@@ -97,11 +94,12 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
     return result;
   }
-  public int deleteCustomer(int id){
+
+  public int deleteEmployee(int id){
     int result = 0;
     try {
       Connection conn = dataSource.getConnection();
-      String sql = "delete from customer where id =?";
+      String sql = "delete from employees where id =?";
       PreparedStatement stmt = conn.prepareStatement(sql);
       stmt.setLong(1, id);
       result = stmt.executeUpdate();
