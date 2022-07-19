@@ -17,7 +17,8 @@ public class StorageServiceImpl implements StorageService {
   @Override
   public void store(MultipartFile file) {
     try {
-      Path p = Paths.get("src/main/resources/static/test.jpg");
+      String filename = file.getOriginalFilename();
+      Path p = Paths.get("src/main/resources/static/" + filename + ".jpg");
       Files.copy(file.getInputStream(), p, StandardCopyOption.REPLACE_EXISTING);
     } catch (IOException e) {
       System.out.println(e);

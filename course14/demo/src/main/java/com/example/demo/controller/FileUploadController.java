@@ -23,10 +23,11 @@ public class FileUploadController {
 
   @PostMapping("/file")
   public String handleFileUpload(@RequestParam("file") MultipartFile file) {
-    System.out.println(file.getOriginalFilename());
+    // System.out.println(file.getOriginalFilename());
     try {
+
       storageService.store(file);
-      mailService.prepareAndSend("053792@fju.edu.tw", "檔案已上傳");
+      mailService.prepareAndSend("409401057@mail.fju.edu.tw", "檔案已上傳", file);
     } catch (MailException e) {
       throw new ResponseStatusException(
           HttpStatus.NOT_FOUND, "email未能送出");
