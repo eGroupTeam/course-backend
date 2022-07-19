@@ -31,10 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-<<<<<<< HEAD
-<<<<<<< HEAD
-!**/demo/src/main/resources/application.properties
-=======
->>>>>>> c93d6ee0ff0ca967a332043d5df99ace2e6db9e3
-=======
->>>>>>> c93d6ee0ff0ca967a332043d5df99ace2e6db9e3
