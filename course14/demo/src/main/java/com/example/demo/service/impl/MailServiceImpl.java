@@ -20,7 +20,7 @@ public class MailServiceImpl implements MailService {
   public void prepareAndSend(String recipient, String message) {
     MimeMessagePreparator messagePreparator = mimeMessage -> {
       MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-      messageHelper.setFrom("053792@mail.fju.edu.tw");
+      messageHelper.setFrom("409401150@mail.fju.edu.tw");
       messageHelper.setTo(recipient);
       messageHelper.setSubject(message);
       messageHelper.setText(message);
