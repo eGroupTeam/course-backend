@@ -26,10 +26,12 @@ public class FileUploadController {
     System.out.println(file.getOriginalFilename());
     try {
       storageService.store(file);
-      mailService.prepareAndSend("053792@fju.edu.tw", "檔案已上傳");
+      mailService.prepareAndSend("a109223017@mail.shu.edu.tw", "檔案已上傳");
     } catch (MailException e) {
+      System.out.println(e);
       throw new ResponseStatusException(
           HttpStatus.NOT_FOUND, "email未能送出");
+
     }
     return "OK";
 
