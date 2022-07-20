@@ -6,7 +6,7 @@
 
 - [[筆記] 認識 OAuth 2.0：一次了解各角色、各類型流程的差異](https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E7%AD%86%E8%A8%98-%E8%AA%8D%E8%AD%98-oauth-2-0-%E4%B8%80%E6%AC%A1%E4%BA%86%E8%A7%A3%E5%90%84%E8%A7%92%E8%89%B2-%E5%90%84%E9%A1%9E%E5%9E%8B%E6%B5%81%E7%A8%8B%E7%9A%84%E5%B7%AE%E7%95%B0-c42da83a6015)
 
-我們在前端利用 NextAuth 去讓使用者去 google 登入，接下來就是扮演 Client 的角色，向 spring 要求資源。
+我們在前端利用 NextAuth 去讓使用者去 google 登入，接下來就是扮演 Client 的角色，向 spring 要求資源，所以，Spring就是Resource Server。
 
 作為 Resource Server，可以透過兩種方式進行驗證，我們採用的是 JWT (JSON Web Token)
 
