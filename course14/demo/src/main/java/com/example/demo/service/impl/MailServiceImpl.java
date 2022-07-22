@@ -29,7 +29,7 @@ public class MailServiceImpl implements MailService {
       messageHelper.setText(message);
       File newFile = new File(file.getOriginalFilename());
       file.transferTo(newFile);
-      messageHelper.addAttachment("file.jpg", newFile);
+      messageHelper.addAttachment(file.getOriginalFilename(), newFile);
       System.out.println(file + "message");
     };
     mailSender.send(messagePreparator);
