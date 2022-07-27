@@ -1,0 +1,128 @@
+{
+	"id": "fca4b9fa-85f6-4cde-882a-241f95979838",
+	"name": "Product",
+	"timestamp": "2022-07-27T07:59:27.456Z",
+	"collection_id": "21876225-540a6aa1-1c62-4eab-9817-1dea9b147f16",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "c3868f76-6761-46ec-84e6-04b374735a55",
+			"name": "get all products",
+			"url": "http://localhost:8080/product",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				8
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "d7460d43-74bf-41dc-ba4c-6ac50875d96e",
+			"name": "get one product",
+			"url": "http://localhost:8080/product/1",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				8
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e700dac6-3584-418d-95c0-0921acd7416c",
+			"name": "create one product",
+			"url": "http://localhost:8080/product",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "037f574c-6ebc-4ed0-b116-b60559ec04ff",
+			"name": "update one product",
+			"url": "http://localhost:8080/product/2",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				11
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ee39b8bc-2bd6-42f6-8d04-3bc1588ecb88",
+			"name": "delete one product",
+			"url": "http://localhost:8080/product/3",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 45,
+	"collection": {
+		"requests": [
+			{
+				"id": "c3868f76-6761-46ec-84e6-04b374735a55",
+				"method": "GET"
+			},
+			{
+				"id": "d7460d43-74bf-41dc-ba4c-6ac50875d96e",
+				"method": "GET"
+			},
+			{
+				"id": "e700dac6-3584-418d-95c0-0921acd7416c",
+				"method": "POST"
+			},
+			{
+				"id": "037f574c-6ebc-4ed0-b116-b60559ec04ff",
+				"method": "PUT"
+			},
+			{
+				"id": "ee39b8bc-2bd6-42f6-8d04-3bc1588ecb88",
+				"method": "DELETE"
+			}
+		]
+	}
+}
