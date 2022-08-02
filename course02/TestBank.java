@@ -8,5 +8,13 @@ public class TestBank {
         myBank.calculateInterest();
         myBank.displayAllAccounts();
 
+        Bank myBank2 = new Bank(3);
+        myBank2.addAccount(10001);
+        myBank2.addAccount(10002);
+        myBank2.addAccount(10003);
+        myBank2.displayAllAccounts();
+        myBank2.calculateInterest();
+        myBank2.displayAllAccounts();
+
     }
 }

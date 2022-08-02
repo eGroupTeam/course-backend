@@ -10,10 +10,11 @@ public class TestAccount {
         aAccount.withdraw(12000);
         System.out.println(aAccount.getBalance());
         System.out.println(bAccount.getBalance());
-        
+        /* 
         Account.setInterestRate(.005);
         aAccount.calculateInterest();
         bAccount.calculateInterest();
+        */
         System.out.println(aAccount.getBalance());
         System.out.println(bAccount.getBalance());
          
