@@ -9,24 +9,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.entity.Customer;
-  @Controller
-  public class MainController{
-    @GetMapping({"/","/hello"})
-    @ResponseBody
-    public String index() {
-        return "<h1>Hi!</h1>";
-    }
-    @GetMapping("/request")
-    @ResponseBody
-    public String request(HttpServletRequest request) {
-      //System.out.println("get");
-      String name = request.getParameter("id");
-      return name;
-    }
-    @PostMapping("/request")
-    @ResponseBody
-    public String postRequest(@ModelAttribute Customer customer) {
-      //System.out.println("post");
-      return customer.getName();
-    }
+
+@Controller
+public class MainController {
+  @GetMapping({ "/", "/hello" })
+  @ResponseBody
+  public String index() {
+    return "<h1>Hi!</h1>";
+  }
+
+  @GetMapping("/request")
+  @ResponseBody
+  public String request(HttpServletRequest request) {
+    // System.out.println("get");
+    String name = request.getParameter("id");
+    return name;
+  }
+
+  @PostMapping("/request")
+  @ResponseBody
+  public String postRequest(@ModelAttribute Customer customer) {
+    // public String[] postRequest(@ModelAttribute Customer customer) {
+    // System.out.println("post");
+    String name = customer.getName();
+    String age = customer.getAge();
+    // String[] lst = { name, age };
+    // return lst;
+    return "Name: " + name + ", age: " + age;
+  }
 }
