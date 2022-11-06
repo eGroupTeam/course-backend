@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class TestController{
+    /* 
     @GetMapping("/test")
     @ResponseBody
     public String index() {
@@ -25,4 +26,5 @@ public class TestController{
        
        return name;
     }
+    */
 }
