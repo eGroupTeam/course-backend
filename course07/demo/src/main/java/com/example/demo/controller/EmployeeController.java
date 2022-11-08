@@ -1,6 +1,10 @@
 package com.example.demo.controller;
-import java.util.ArrayList;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,85 +16,52 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.entity.Employee;
+import com.example.demo.dao.EmployeeDAO;
 
 @RestController
 public class EmployeeController {
 
-  private ArrayList<Employee> employeeList = new ArrayList<>();
+  @Autowired
+  EmployeeDAO dao;
 
-  public EmployeeController(){
-    employeeList.add(new Employee("Mary", "IT"));
-    employeeList.add(new Employee("Ruby", "IT"));
-    employeeList.add(new Employee("Ben", "IT"));
+  @GetMapping(value = "/employee")
+  public List<Employee> retrieveEmployees() throws SQLException, Exception {
+    return dao.findAll();
   }
-   
 
-  @GetMapping("/employee")
-  public ArrayList<Employee> get() {
-    if (employeeList.size()==0){
+  @GetMapping(value = { "/employee/{id}" })
+  public Employee retrieveOneEmployee(@PathVariable("id") Long id) throws SQLException, Exception {
+    Employee employee = dao.findOne(id);
+    if (employee.getId() == -1) {
       throw new ResponseStatusException(
-        HttpStatus.NOT_FOUND, "無資料");
-    }
-    
-    return employeeList;
-  }
-/*
-  @GetMapping("/employee/{id}")
-  public Employee retrieveOneEmployee(@PathVariable("id") int id){
-    return employeeList.get(id);
-  }
- */
-
-
-  @GetMapping("/employee/{id}")
-  public Employee retrieveOneEmployee(@PathVariable("id") int id){
-    Employee employee= new Employee("", "");
-    try{
-      employee =  employeeList.get(id);
-    }
-    
-    catch(IndexOutOfBoundsException exception){
-      throw new ResponseStatusException(
-        HttpStatus.NOT_FOUND, "id: "+id+" 並不存在", exception);
-
-    }
-     
-    catch(Exception e){
-      //employee.setName("id並不存在");
-      System.out.println(e);
-
+          HttpStatus.NOT_FOUND, "id: " + id + " 並不存在");
     }
     return employee;
-     
-  }
- 
-  @PostMapping("/employee")
-  public void addOneEmployee(@RequestBody Employee employee) {
-    employeeList.add(employee);
   }
 
-  @PutMapping("/employee/{id}")
-  public void editOneEmployee(@PathVariable("id") int id, @RequestBody Employee employee) {
-    try{
-      employeeList.set(id, employee);
-    }
-    catch(IndexOutOfBoundsException exception){
-      throw new ResponseStatusException(
-        HttpStatus.NOT_FOUND, "id: "+id+" 並不存在", exception);
-    }
-    
+  @PostMapping(value = "/employee")
+  public void processFormCreate(@RequestBody Employee employee) throws SQLException {
+    dao.createEmployee(employee);
   }
 
-  @DeleteMapping("/employee/{id}")
-  public void removeOneEmployee(@PathVariable("id") int id) {
-    try{
-      employeeList.remove(id);
+  @PutMapping(value = "/employee/{id}")
+  public void processFormUpdate(@RequestBody Employee employee, @PathVariable("id") Long id) throws SQLException {
+    if (employee.getId() == null) {
+      employee.setId(id);
     }
-    catch(IndexOutOfBoundsException exception){
-      throw new ResponseStatusException(
-        HttpStatus.NOT_FOUND, "id: "+id+" 並不存在", exception);
+
+    int result = dao.updateEmployee(employee);
+    if (result == 0) {
+      throw new SQLException("id: " + id + " 並不存在");
     }
-    
+  }
+
+  @DeleteMapping(value = "/employee/{id}")
+  public void deleteEmployee(@PathVariable("id") Long id) throws SQLException, Exception {
+    int result = dao.deleteEmployee(id);
+    if (result == 0) {
+      throw new SQLException("id: " + id + " 並不存在");
+    }
   }
 
 }

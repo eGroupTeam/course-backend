@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +46,14 @@ public class CustomerController {
     
     int result = dao.updateCustomer(customer);
     if (result == 0){
+      throw new SQLException("id: "+id+" 並不存在");
+    }
+  }
+
+  @DeleteMapping(value = "/customer/{id}")
+  public void deleteCustomer(@PathVariable("id") Long id) throws SQLException, Exception{
+    int result = dao.deleteCustomer(id);
+    if(result == 0){
       throw new SQLException("id: "+id+" 並不存在");
     }
   }
