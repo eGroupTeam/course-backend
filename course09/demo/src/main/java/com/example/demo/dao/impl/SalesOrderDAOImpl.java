@@ -24,6 +24,27 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
   @Autowired
   private DataSource dataSource;
 
+  public List<ProductSales> getBetweenTime(String datetime1, String datetime2) throws Exception {
+    List<ProductSales> customers = new ArrayList<ProductSales>();
+    String sql = "SELECT product_id, name, SUM(amount) as total_sales FROM sales_order_item JOIN product ON product.id = sales_order_item.product_id JOIN sales_order on sales_order_item.order_id = sales_order.id WHERE sales_order.order_time BETWEEN ? AND ? GROUP BY product_id";
+    try (
+        Connection conn = dataSource.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);) {
+        stmt.setString(1, datetime1);
+        stmt.setString(2, datetime2);
+      ResultSet result = stmt.executeQuery();
+      while (result.next()) {
+        customers.add(
+            new ProductSales(
+                result.getInt("product_id"),
+                result.getString("name"),
+                result.getInt("total_sales")));
+      }
+
+    }
+    return customers;
+  }
+
   public List<ProductSales> getList() throws Exception {
     List<ProductSales> customers = new ArrayList<ProductSales>();
     String sql = "select product_id, name, SUM(amount) as total from sales_order_item join product on product.id = sales_order_item.product_id group by product_id";
