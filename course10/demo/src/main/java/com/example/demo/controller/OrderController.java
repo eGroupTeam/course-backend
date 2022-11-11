@@ -55,4 +55,13 @@ public class OrderController {
     return orders;
   }
 
+  @GetMapping("/order/status/{status}")
+  public List<SalesOrder> getByStatus(@PathVariable("status") int status) throws Exception {
+    List<SalesOrder> orderStatus = dao.getByStatus(status);
+    if (orderStatus.size() == 0) {
+      throw new ResponseStatusException(
+          HttpStatus.NOT_FOUND, "狀態:" + status + "，無訂單資料");
+    }
+    return orderStatus;
+  }
 }
