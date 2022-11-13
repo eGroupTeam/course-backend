@@ -7,6 +7,10 @@ public class SalesOrder {
   private int customerId;
   private List<SalesOrderItem> items;
 
+  public SalesOrder(){
+
+  }
+  
   // 這會導致insert失敗
   // public SalesOrder(int id, int customerId, List<SalesOrderItem> items) {
   // this.id = id;

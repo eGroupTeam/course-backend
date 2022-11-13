@@ -7,6 +7,10 @@ public class SalesOrderItem {
   private int amount;
   private int price;
 
+  public SalesOrderItem(){
+
+  }
+  
   public SalesOrderItem(int id, int orderId, int productId, int amount, int price) {
     this.id = id;
     this.orderId = orderId;

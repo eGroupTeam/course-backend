@@ -1,0 +1,857 @@
+{
+	"info": {
+		"_postman_id": "f4f6a587-65df-42f1-9564-c1ef841b4d07",
+		"name": "customer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24270143"
+	},
+	"item": [
+		{
+			"name": "sales order",
+			"item": [
+				{
+					"name": "get sales order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"response must be error and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const itemSchema = {\r",
+									"    \"properties\": {\r",
+									"        \"id\":{\"type\":\"number\"},\r",
+									"        \"orderId\":{\"type\":\"number\"},\r",
+									"        \"productId\":{\"type\":\"number\"},\r",
+									"        \"amount\":{\"type\":\"number\"},\r",
+									"        \"price\":{\"type\":\"number\"},\r",
+									"\r",
+									"    }\r",
+									"\r",
+									"}\r",
+									"const orderSchema = {\r",
+									"  \"properties\": {\r",
+									"    \"id\": {\r",
+									"      \"type\": \"number\"\r",
+									"    },\r",
+									"    \"customerId\":{\r",
+									"        \"type\":\"number\"\r",
+									"    },\r",
+									"    \"items\":{\r",
+									"        \"type\":\"array\",\r",
+									"        \"items\":[\r",
+									"            itemSchema\r",
+									"        ]\r",
+									"\r",
+									"        \r",
+									"    }\r",
+									"\r",
+									"  },\r",
+									"      \"required\": [\r",
+									"        \"id\",\"customerId\", \"items\"\r",
+									"    ]\r",
+									"\r",
+									"};\r",
+									"const schema = {\r",
+									"    \"type\":\"array\",\r",
+									"            \"items\":[\r",
+									"            orderSchema\r",
+									"        ],\r",
+									"    \"required\": [\r",
+									"        \"items\"\r",
+									"    ]\r",
+									"}\r",
+									"\r",
+									"pm.test('Schema is valid', function() {\r",
+									"  console.log(\"here1\");\r",
+									"  //pm.response.to.have.jsonSchema(schema);\r",
+									"  console.log(\"here2\");\r",
+									"  console.log(pm.response);\r",
+									"  console.log(\"here3\");\r",
+									"});\r",
+									"pm.test('there are values', function(){\r",
+									"    console.log(\"here4\");\r",
+									"\r",
+									"\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sales order by customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const itemSchema = {\r",
+									"    \"properties\": {\r",
+									"        \"id\":{\"type\":\"number\"},\r",
+									"        \"orderId\":{\"type\":\"number\"},\r",
+									"        \"productId\":{\"type\":\"number\"},\r",
+									"        \"amount\":{\"type\":\"number\"},\r",
+									"        \"price\":{\"type\":\"number\"},\r",
+									"\r",
+									"    }\r",
+									"\r",
+									"}\r",
+									"const orderSchema = {\r",
+									"  \"properties\": {\r",
+									"    \"id\": {\r",
+									"      \"type\": \"number\"\r",
+									"    },\r",
+									"    \"customerId\":{\r",
+									"        \"type\":\"number\"\r",
+									"    },\r",
+									"    \"items\":{\r",
+									"        \"type\":\"array\",\r",
+									"        \"items\":[\r",
+									"            itemSchema\r",
+									"        ]\r",
+									"\r",
+									"        \r",
+									"    }\r",
+									"\r",
+									"  }\r",
+									"};\r",
+									"const schema = {\r",
+									"    \"type\":\"array\",\r",
+									"            \"items\":[\r",
+									"            orderSchema\r",
+									"        ]\r",
+									"}\r",
+									"\r",
+									"pm.test('Schema is valid', function() {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/order/customer/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"customer",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sales order by order id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"order 1\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.id).to.eql(1);\r",
+									"  pm.expect(responseJson.customerId).to.eql(1);\r",
+									"  pm.expect(responseJson.items[0].id).to.eql(1);\r",
+									"  pm.expect(responseJson.items[0].orderId).to.eql(1);\r",
+									"  pm.expect(responseJson.items[0].productId).to.eql(1);\r",
+									"  pm.expect(responseJson.items[0].amount).to.eql(3);\r",
+									"  pm.expect(responseJson.items[0].price).to.eql(10000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									" const expectedObject = {\r",
+									"    \"id\": 1,\r",
+									"    \"customerId\": 1,\r",
+									"    \"items\": [\r",
+									"        {\r",
+									"        \"orderId\": 1,\r",
+									"        \"id\": 1,\r",
+									"        \"productId\": 1,\r",
+									"            \"amount\": 3,\r",
+									"            \"price\": 10000\r",
+									"        }\r",
+									"    ]\r",
+									"  };\r",
+									"pm.test(\"test order with object\", () => {\r",
+									"  pm.expect(pm.response.json()).to.deep.equal(expectedObject);\r",
+									"});\r",
+									"\r",
+									"const itemSchema = {\r",
+									"    \"properties\": {\r",
+									"        \"id\":{\"type\":\"number\"},\r",
+									"        \"orderId\":{\"type\":\"number\"},\r",
+									"        \"productId\":{\"type\":\"number\"},\r",
+									"        \"amount\":{\"type\":\"number\"},\r",
+									"        \"price\":{\"type\":\"number\"},\r",
+									"\r",
+									"    }\r",
+									"\r",
+									"}\r",
+									"const schema = {\r",
+									"  \"properties\": {\r",
+									"    \"id\": {\r",
+									"      \"type\": \"number\"\r",
+									"    },\r",
+									"    \"customerId\":{\r",
+									"        \"type\":\"number\"\r",
+									"    },\r",
+									"    \"items\":{\r",
+									"        \"type\":\"array\",\r",
+									"        \"items\":[\r",
+									"            itemSchema\r",
+									"        ]\r",
+									"\r",
+									"        \r",
+									"    }\r",
+									"\r",
+									"  }\r",
+									"};\r",
+									"pm.test('Schema is valid', function() {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/order/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sales order wrong order id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"response must be error and have a body\", function () {\r",
+									"     pm.response.to.be.error;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check error content\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.status).to.eql(404);\r",
+									"  pm.expect(responseJson.error).to.eql(\"Not Found\");\r",
+									"  pm.expect(responseJson.message).to.eql(\"無此order，order id:10\");\r",
+									"});\r",
+									"\r",
+									"const errorSchema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"timestamp\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"status\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"error\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"message\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"path\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"timestamp\",\r",
+									"    \"status\",\r",
+									"    \"error\",\r",
+									"    \"message\",\r",
+									"    \"path\"\r",
+									"  ]\r",
+									"}\r",
+									"pm.test('Schema is valid', function() {\r",
+									"  pm.response.to.have.jsonSchema(errorSchema);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/order/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": 1,\r\n    \"items\":[\r\n        {\r\n            \"productId\": 1,\r\n            \"amount\": 3\r\n        },\r\n        {\r\n            \"productId\": 2,\r\n            \"amount\": 2\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create order without items",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": 2,\r\n    \"items\":[]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "get",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cutomer 2",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cutomer name",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/name/b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"name",
+						"b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cutomer order by weight",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cutomer weight between",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/weight/50/60",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"weight",
+						"50",
+						"60"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cutomer distinct address",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/address/distinct",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"address",
+						"distinct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cutomer address groupby",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/address/groupby",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"address",
+						"groupby"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cutomer address having",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/address/groupby",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"address",
+						"groupby"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cutomer with error",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Dave\",\r\n    \"address\": \"Taipei\",\r\n    \"weight\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create customer with error",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Dave\",\r\n    \"address\": \"Taipei\",\r\n    \"weight\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"id\":2,\r\n\"name\": \"Vicky\",\r\n\"address\": \"Taipei\",\r\n\"weight\":37\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update customer with error",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"id\":2,\r\n\"name\": \"Vicky\",\r\n\"address\": \"Taipei\",\r\n\"weight\":37\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "manager",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
