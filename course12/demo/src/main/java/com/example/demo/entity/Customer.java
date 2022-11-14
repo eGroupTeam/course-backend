@@ -5,6 +5,10 @@ public class Customer {
   private String address;
   private int weight;
 
+  public Customer(){
+
+  }
+  
   public Customer(Long id, String name, String address, int weight) throws Exception {
     this.id = id;
     this.name = name;

@@ -214,4 +214,17 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
     return result;
   }
+  public int delete(int id) throws Exception {
+    int result = 0;
+    String sql = "delete from customer where id =?";
+    try (
+        Connection conn = dataSource.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);) {
+      stmt.setInt(1, id);
+      result = stmt.executeUpdate();
+    } catch (Exception e) {
+      throw e;
+    }
+    return result;
+  }
 }

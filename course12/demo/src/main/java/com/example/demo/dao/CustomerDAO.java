@@ -16,4 +16,5 @@ public interface CustomerDAO {
   public Customer get(Long id) throws Exception;
   public int insert(Customer customer) throws Exception;
   public int update(Customer customer) throws Exception;
+  public int delete(int id) throws Exception;
 }
