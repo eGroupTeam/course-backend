@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +17,7 @@ import com.example.demo.dao.CustomerDAO;
 import com.example.demo.entity.AddressCount;
 import com.example.demo.entity.Customer;
 @RestController
+@CrossOrigin
 public class CustomerController {
   @Autowired
   CustomerDAO dao;
@@ -100,13 +103,22 @@ public class CustomerController {
 
   @PutMapping(value = "/customer/{id}")
   public void processFormUpdate(@RequestBody Customer customer, @PathVariable("id") Long id) throws Exception {
-    if (customer.getId() == null){
+    if (customer.getId() == 0){
       customer.setId(id);
     }
     
     int result = dao.update(customer);
     if (result == 0){
       throw new SQLException("id: "+id+" 並不存在");
+    }
+  }
+
+  @DeleteMapping(value = "/customer/{id}")
+  public void delete(@PathVariable("id") int id) throws Exception {
+
+    int result = dao.delete(id);
+    if (result == 0) {
+      throw new SQLException("id: " + id + " 並不存在");
     }
   }
 }
