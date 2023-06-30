@@ -59,6 +59,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
               new SalesOrder(
                   orderId,
                   result.getInt("customer_id"),
+                  result.getInt("status"),
                   getItemList(orderId)));
 
         }
@@ -88,6 +89,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
             new SalesOrder(
                 orderId,
                 result.getInt("customer_id"),
+                result.getInt("status"),
                 getItemList(orderId)));
 
       }
@@ -108,6 +110,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
           return new SalesOrder(
               orderId,
               result.getInt("customer_id"),
+              result.getInt("status"),
               getItemList(orderId));
 
         } else {
@@ -121,6 +124,31 @@ public class SalesOrderDAOImpl implements SalesOrderDAO {
 
   }
 
+  public List<SalesOrder> getByStatus(int status) throws Exception{
+    List<SalesOrder> orderStatus = new ArrayList<SalesOrder>();
+    String sql = "SELECT * FROM sales_order WHERE status = ?";
+    try(
+      Connection conn = dataSource.getConnection();
+      PreparedStatement stmt = conn.prepareStatement(sql);
+    ){
+      stmt.setInt(1, status);
+      try(ResultSet result = stmt.executeQuery();){
+        while(result.next()){
+          int orderId = result.getInt("id");
+          orderStatus.add(
+            new SalesOrder(
+              orderId,
+              result.getInt("customer_id"),
+              result.getInt("status"),
+              getItemList(orderId)
+            )
+          );
+        }
+      }
+    }
+    return orderStatus;
+  }
+  
   public List<SalesOrderItem> getItemList(int orderId) throws Exception {
     List<SalesOrderItem> salesOrderItem = new ArrayList<SalesOrderItem>();
     String sql = "select * from sales_order_item where order_id = ?";
