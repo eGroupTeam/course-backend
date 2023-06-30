@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "b7133ff7-db93-4cab-b4ae-c91e5f2cc9df",
+		"name": "hw11",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28253670"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
