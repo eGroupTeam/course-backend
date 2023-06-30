@@ -12,4 +12,6 @@ public interface SalesOrderDAO {
   public int insert(SalesOrder order) throws Exception;
 
   public List<ProductSales> getList() throws Exception;
+  
+  public List<ProductSales> getBetweenTime(String datetime1, String datetime2) throws Exception;
 }
