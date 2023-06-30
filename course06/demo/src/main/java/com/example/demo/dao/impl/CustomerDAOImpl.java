@@ -22,7 +22,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     Customer customer = new Customer(-1l,"","",0);
     try {
       Connection conn = dataSource.getConnection();
-      String sql = "select id, name, address, weight from customer where id = ?";
+      String sql = "select id, name, address, weight from custome where id = ?";
       PreparedStatement stmt = conn.prepareStatement(sql);
       stmt.setLong(1, id);
       ResultSet rs = stmt.executeQuery();
@@ -41,7 +41,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     List<Customer> customers = new ArrayList<Customer>();
     try {
       Connection conn = dataSource.getConnection();
-      String sql = "select id, name, address, weight from customer";
+      String sql = "select id, name, address, weight from custome";
       PreparedStatement stmt = conn.prepareStatement(sql);
       ResultSet rs = stmt.executeQuery();
       while (rs.next()){

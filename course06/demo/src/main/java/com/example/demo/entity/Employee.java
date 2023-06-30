@@ -1,9 +1,11 @@
 package com.example.demo.entity;
 public class Employee{
+    private long id;
     private String name;
     private String department;
 
-    public Employee(String name, String department ) {
+    public Employee(Long id, String name, String department ) {
+      this.id = id;
       this.name = name;
       this.department = department;
     }
@@ -22,5 +24,13 @@ public class Employee{
 
     public void setDepartment(String department) {
       this.department = department;
+    }
+
+    public Long getId(){
+      return id;
+    }
+
+    public void setId(Long id){
+      this.id = id;
     }
 }
