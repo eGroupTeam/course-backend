@@ -1,23 +1,26 @@
 package com.example.demo.entity;
+
 public class Customer {
   private Long id;
   private String name;
   private String address;
   private int weight;
 
+  public Customer() {
+
+  }
+
   public Customer(Long id, String name, String address, int weight) throws Exception {
     this.id = id;
     this.name = name;
     this.address = address;
-    if (weight > 0){
+    if (weight > 0) {
       this.weight = weight;
-    }
-    else {
+    } else {
       throw new Exception("體重必須大於0");
     }
 
   }
-
 
   public Long getId() {
     return this.id;
@@ -51,6 +54,5 @@ public class Customer {
     this.weight = weight;
   }
    
-  
 }
 
