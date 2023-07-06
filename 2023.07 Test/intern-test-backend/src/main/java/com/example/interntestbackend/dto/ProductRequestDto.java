@@ -1,7 +1,5 @@
 package com.example.interntestbackend.dto;
 
-import com.example.interntestbackend.model.Organization;
-
 public class ProductRequestDto {
     private String name;
     private String description;

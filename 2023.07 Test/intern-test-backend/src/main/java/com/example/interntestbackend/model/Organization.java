@@ -32,7 +32,7 @@ public class Organization {
     @Column(name = "organization_address")
     private String address;
 
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "organization")
     private List<Product> products;
 
     public Organization(String name, String description, Date date, String tel, String mail, String address) {

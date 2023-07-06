@@ -50,9 +50,6 @@ public class ProductController {
     @GetMapping("/products")
     public List<ProductResponseDto> getAllProduct() {
         List<Product> products = service.getAllProduct();
-        if (products.size() == 0) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "無資料");
-        }
 
         List<ProductResponseDto> responseDtos = new ArrayList<>();
         for(Product product:products){

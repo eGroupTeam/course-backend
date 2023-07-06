@@ -23,7 +23,7 @@ public class Product {
     @Column(name = "product_price")
     private String price;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "organization_id")
     private Organization organization;
 
