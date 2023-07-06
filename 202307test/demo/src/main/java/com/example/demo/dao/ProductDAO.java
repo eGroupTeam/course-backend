@@ -1,0 +1,20 @@
+package com.example.demo.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.entity.Product;
+
+@Repository
+public interface ProductDAO {
+    public List<Product> getList() throws Exception;
+    public Product get(Long id) throws Exception;
+    public int insert(Product product) throws Exception;
+    public int update(Product product) throws Exception;
+    public void delete(Long id) throws Exception;
+
+
+
+
+}
