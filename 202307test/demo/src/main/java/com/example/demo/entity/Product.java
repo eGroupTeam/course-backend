@@ -1,38 +1,38 @@
 package com.example.demo.entity;
 
 public class Product {
-  private Long id;
-  private String name;
-  private int price;
+  private Long productId;
+  private String productName;
+  private int productPrice;
 
-  public Product(Long id, String name, int price) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
+  public Product(Long productId, String productName, int productPrice) {
+    this.productId = productId;
+    this.productName = productName;
+    this.productPrice = productPrice;
   }
 
-  public Long getId() {
-    return this.id;
+  public Long getProductId() {
+    return this.productId;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setProductId(Long productId) {
+    this.productId = productId;
   }
 
-  public String getName() {
-    return this.name;
+  public String getProductName() {
+    return this.productName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setProductName(String productName) {
+    this.productName = productName;
   }
 
-  public int getPrice() {
-    return this.price;
+  public int getProductPrice() {
+    return this.productPrice;
   }
 
-  public void setPrice(int price) {
-    this.price = price;
+  public void setProductPrice(int productPrice) {
+    this.productPrice = productPrice;
   }
 
 }

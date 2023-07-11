@@ -22,14 +22,14 @@ public class ProductDAOImpl implements ProductDAO{
   
   private Product getProduct(ResultSet rs) throws SQLException, Exception{
     return new Product(
-      rs.getLong("id"),
-      rs.getString("name"),
-      rs.getInt("price"));
+      rs.getLong("productId"),
+      rs.getString("productName"),
+      rs.getInt("productPrice"));
   }
 
  public Product get(Long id) throws Exception{
     Product product = new Product(-1l,"",1);
-    String sql = "select id, name, price from product where id = ?";
+    String sql = "select productId, productName, productPrice from product where productId = ?";
     //String sql = "select id, name, address, weight from product where id = ?";
     //當 Connection與PreparedStatement無法取得時，會closeConnection與PreparedStatement
     try (
@@ -55,7 +55,7 @@ public class ProductDAOImpl implements ProductDAO{
 
   public List<Product> getList() throws Exception{
     List<Product> products = new ArrayList<Product>();
-    String sql = "select id, name, price from product";
+    String sql = "select productId, productName, productPrice from product";
     try(
       Connection conn = dataSource.getConnection();
       PreparedStatement stmt = conn.prepareStatement(sql);
@@ -72,12 +72,12 @@ public class ProductDAOImpl implements ProductDAO{
 
   public int insert(Product product) throws Exception{
     int result = 0;
-    String sql = "insert into product (name, price) values(?, ?)";
+    String sql = "insert into product (productName, productPrice) values(?, ?)";
     try( 
       Connection conn = dataSource.getConnection();
       PreparedStatement stmt = conn.prepareStatement(sql);) {    
-      stmt.setString(1, product.getName());
-      stmt.setInt(2, product.getPrice());
+      stmt.setString(1, product.getProductName());
+      stmt.setInt(2, product.getProductPrice());
       result = stmt.executeUpdate();
     } catch(Exception e) {
       //something wrong
@@ -87,13 +87,13 @@ public class ProductDAOImpl implements ProductDAO{
   }
   public int update(Product product) throws Exception{
     int result = 0;
-    String sql = "update product set name=?, price=? where id =?";
+    String sql = "update product set productName=?, productPrice=? where productId =?";
     try(
       Connection conn = dataSource.getConnection();
       PreparedStatement stmt = conn.prepareStatement(sql);) {
-      stmt.setString(1, product.getName());
-      stmt.setInt(2, product.getPrice());
-      stmt.setLong(3, product.getId());
+      stmt.setString(1, product.getProductName());
+      stmt.setInt(2, product.getProductPrice());
+      stmt.setLong(3, product.getProductId());
       result = stmt.executeUpdate();
     } catch(Exception e) {
       throw e;
@@ -103,7 +103,7 @@ public class ProductDAOImpl implements ProductDAO{
 
     public void delete(Long id) throws Exception{
    
-    String sql = "delete from product where id =?";
+    String sql = "delete from product where productId =?";
     try(
       Connection conn = dataSource.getConnection();
       PreparedStatement stmt = conn.prepareStatement(sql);) {

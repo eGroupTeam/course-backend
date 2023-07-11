@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.example.demo.dao.ProductDAO;
 import com.example.demo.entity.Product;
 
 @RestController
+@CrossOrigin
 public class ProductController {
 
     @Autowired
@@ -31,7 +33,7 @@ public class ProductController {
   @GetMapping(value = {"/product/{id}"})
   public Product retrieveOneProduct(@PathVariable("id") Long id) throws SQLException, Exception{
     Product product = dao.get(id);
-    if (product.getId() == -1){
+    if (product.getProductId() == -1){
       throw new ResponseStatusException(
         HttpStatus.NOT_FOUND, "id: "+id+" 並不存在");
     }
@@ -46,8 +48,8 @@ public class ProductController {
 
   @PutMapping(value = "/product/{id}")
   public void processFormUpdate(@RequestBody Product product, @PathVariable("id") Long id) throws Exception {
-    if (product.getId() == null){
-      product.setId(id);
+    if (product.getProductId() == null){
+      product.setProductId(id);
     }
     
     int result = dao.update(product);
